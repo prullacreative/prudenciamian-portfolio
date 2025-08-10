@@ -105,7 +105,7 @@ export default function SkillsSection() {
                 {category.title}
               </h3>
               
-              <div className="grid grid-cols-2 px-14 gap-4">
+              <div className="grid grid-cols-2 px-6 gap-4">
                 {category.skills.map((skill, index) => {
                   const IconComponent = skill.icon
                   return (
