@@ -200,7 +200,7 @@ export default function ProjectsSection() {
                     className={`absolute transition-all duration-700 ease-out cursor-pointer ${
                       isCenter
                         ? 'z-30 scale-100 opacity-100'
-                        : 'z-20 scale-75 opacity-60 md:opacity-60 opacity-0'
+                        : 'z-20 scale-75  md:opacity-60 opacity-0'
                     }`}
                     onClick={() => !isCenter && (isPrev ? prevProject() : isNext ? nextProject() : null)}
                     onMouseEnter={() => isCenter && setHoveredProject(project.id)}

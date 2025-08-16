@@ -23,7 +23,7 @@ export default function ContactSection() {
 
   const contactInfo = {
     email: "prullacreative@gmail.com",
-    phoneNumber: "+22901518683422",
+    phoneNumber: "+2290151868342",
     location: "Cotonou, Bénin",
     socialMedia: {
       facebook: "https://facebook.com/prullacreative",

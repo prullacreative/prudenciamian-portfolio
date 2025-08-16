@@ -5,17 +5,15 @@ import { motion, AnimatePresence } from "framer-motion"
 import { PhoneIcon as WhatsApp, X } from "lucide-react"
 import { IconBrandWhatsapp } from "@tabler/icons-react"
 
-// Composant pour le bouton WhatsApp flottant
+
 export default function WhatsAppButton() {
   // État pour gérer l'ouverture/fermeture de la bulle
   const [isOpen, setIsOpen] = useState(false)
 
   // Numéro de téléphone WhatsApp
-  const phoneNumber = "+22901518683422" // Numéro WhatsApp de Prudencia Mian
-
+  const phoneNumber = "+2290151868342" 
   return (
-    <div className=" sm:hidden md:hidden fixed bottom-6 z-50 right-6 sm:bottom-3 sm:right-3 w-12 h-12 sm:w-10 sm:h-10">
-
+    <div className="fixed bottom-6 right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div

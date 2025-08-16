@@ -31,12 +31,12 @@ export default function ContactModal({ isOpen, onClose, planName }: ContactModal
 
   // Informations de contact
   const contactInfo = {
-    phoneNumber: "+22901518683422",
+    phoneNumber: "+2290151868342",
     socialMedia: {
       facebook: "https://facebook.com/prullacreative",
       instagram: "https://instagram.com/prullacreative",
       linkedin: "https://linkedin.com/in/prudenciamian",
-      whatsapp: `https://wa.me/22901518683422?text=Bonjour, je suis intéressé(e) par le plan "${planName}". Pouvons-nous en discuter?`,
+      whatsapp: `https://wa.me/2290151868342?text=Bonjour, je suis intéressé(e) par le plan "${planName}". Pouvons-nous en discuter?`,
     },
   }
 

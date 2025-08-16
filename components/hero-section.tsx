@@ -31,7 +31,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-7 space-y-8"
           >
-            {/* Hello I'm */}
+           
             <div className="space-y-2">
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
@@ -52,7 +52,7 @@ export default function HeroSection() {
                   className="text-6xl md:text-6xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-none tracking-tight"
                   style={{ fontFamily: 'Arial Black, sans-serif' }}
                 >
-                  I'M
+                  J'SUIS
                 </span>
                 {/* Profile image integrated in text */}
                 <div className="relative">

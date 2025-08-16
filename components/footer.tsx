@@ -4,13 +4,13 @@
 import Link from "next/link"
 
 export default function Footer() {
-  // Obtenir l'année courante pour le copyright
+ 
   const currentYear = new Date().getFullYear()
 
-  // Informations de contact et réseaux sociaux
+
   const contactInfo = {
     email: "prullacreative@gmail.com",
-    phoneNumber: "+22901518683422",
+    phoneNumber: "+2290151868342",
     location: "Cotonou, Bénin",
     socialMedia: {
       facebook: "https://facebook.com/prullacreative",

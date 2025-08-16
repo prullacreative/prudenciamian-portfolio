@@ -14,7 +14,7 @@ export default function TechIcon({ name, className, size = 24 }: TechIconProps) 
     typescript: "/icons/typescript.png",
     tailwind: "/icons/tailwind.png",
     nodejs: "/icons/nodejs.png",
-    // Ajoutez d'autres icônes au besoin
+
   }
 
   const iconPath = iconMap[name.toLowerCase()] || null

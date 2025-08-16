@@ -91,7 +91,7 @@ export default function SkillsSection() {
           <div className="w-20 h-1 bg-gradient-to-r from-purple-heart-400 to-purple-heart-600 mx-auto mt-4"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-4">
           {Object.entries(skillCategories).map(([key, category], categoryIndex) => (
             <motion.div
               key={key}
@@ -120,7 +120,7 @@ export default function SkillsSection() {
                       whileHover={{ scale: 1.05, y: -5 }}
                       className="group cursor-pointer"
                     >
-                      <div className="bg-gradient-to-br from-purple-heart-50 to-purple-heart-100/70 dark:from-purple-heart-900/20 dark:to-purple-heart-800/20 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-heart-200/50 dark:border-purple-heart-400/20 h-full">
+                      <div className=" h-full">
                         <div className="flex flex-col items-center space-y-4">
                           <motion.div 
                             className={`w-16 h-16 flex items-center justify-center bg-gradient-to-r ${category.color} rounded-xl group-hover:scale-110 transition-transform`}
