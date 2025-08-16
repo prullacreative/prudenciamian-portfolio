@@ -14,7 +14,8 @@ export default function WhatsAppButton() {
   const phoneNumber = "+22901518683422" // Numéro WhatsApp de Prudencia Mian
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className=" sm:hidden md:hidden fixed bottom-6 z-50 right-6 sm:bottom-3 sm:right-3 w-12 h-12 sm:w-10 sm:h-10">
+
       <AnimatePresence>
         {isOpen && (
           <motion.div

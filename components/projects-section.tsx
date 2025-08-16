@@ -38,7 +38,7 @@ export default function ProjectsSection() {
   {
     id: 3,
     title: "NovaTrass",
-    shortDescription: "Plateforme d’investissement en ligne développée avec Laravel et Bootstrap, offrant un espace sécurisé pour gérer et suivre les investissements.",
+    shortDescription: "Plateforme d'investissement en ligne développée avec Laravel et Bootstrap, offrant un espace sécurisé pour gérer et suivre les investissements.",
     image: "https://res.cloudinary.com/dl2yc7401/image/upload/v1754777938/novatrass_yw14kn.png",
     technologies: ["Laravel", "Bootstrap", "MySQL"],
     category: "Plateforme",
@@ -50,7 +50,7 @@ export default function ProjectsSection() {
   {
     id: 4,
     title: "Publiconnect",
-    shortDescription: "Solution de communication et de collaboration dédiée au marché public, permettant aux membres d’un espace de travail d’échanger efficacement.",
+    shortDescription: "Solution de communication et de collaboration dédiée au marché public, permettant aux membres d'un espace de travail d'échanger efficacement.",
     image: "https://res.cloudinary.com/dl2yc7401/image/upload/v1754777917/publiconnect_eqeijo.png",
     technologies: ["Laravel", "Bootstrap", "MySQL"],
     category: "Collaboration",
@@ -86,7 +86,7 @@ export default function ProjectsSection() {
   {
     id: 7,
     title: "Laiterie Bio",
-    shortDescription: "Template React et TailwindCSS pour la présentation d’une entreprise laitière bio, mettant en valeur ses produits et sa philosophie.",
+    shortDescription: "Template React et TailwindCSS pour la présentation d'une entreprise laitière bio, mettant en valeur ses produits et sa philosophie.",
     image: "https://res.cloudinary.com/dl2yc7401/image/upload/v1754777930/laiterie_r6jjc3.png",
     technologies: ["React.js", "TailwindCSS"],
     category: "Site vitrine",
@@ -153,7 +153,7 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="w-full py-20 bg-gradient-to-br from-purple-heart-50 to-purple-heart-100/30 dark:from-purple-heart-950/20 dark:to-gray-900">
+    <section id="projects" className="w-full py-20 bg-gradient-to-br from-purple-heart-50 to-purple-heart-100/30 dark:from-purple-heart-950/20 dark:to-gray-900 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Header - votre style original */}
         <div className="flex flex-col items-center justify-between mb-12 opacity-0 animate-[fadeInUp_0.8s_ease-out_forwards]">
@@ -176,18 +176,18 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        {/* Carousel 3D */}
-        <div className="relative flex items-center justify-center gap-8">
+        {/* Carousel 3D - Version responsive */}
+        <div className="relative flex items-center justify-center gap-2 md:gap-8">
           {/* Navigation gauche */}
           <button
             onClick={prevProject}
-            className="p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg border border-purple-heart-100 dark:border-purple-heart-400/20 z-40"
+            className="p-2 md:p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg border border-purple-heart-100 dark:border-purple-heart-400/20 z-40 flex-shrink-0"
           >
-            <ChevronLeft className="w-6 h-6 text-purple-heart-600 dark:text-purple-heart-400" />
+            <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-purple-heart-600 dark:text-purple-heart-400" />
           </button>
 
-          {/* Container du carousel avec perspective */}
-          <div className="relative w-full max-w-6xl h-[500px] perspective-1000">
+          {/* Container du carousel avec perspective et overflow contrôlé */}
+          <div className="relative w-full max-w-sm md:max-w-6xl h-[400px] md:h-[500px] perspective-1000 overflow-hidden">
             <div className="relative w-full h-full flex items-center justify-center">
               {getVisibleProjects().map((project) => {
                 const isCenter = project.position === 'current'
@@ -200,78 +200,71 @@ export default function ProjectsSection() {
                     className={`absolute transition-all duration-700 ease-out cursor-pointer ${
                       isCenter
                         ? 'z-30 scale-100 opacity-100'
-                        : 'z-20 scale-75 opacity-60'
+                        : 'z-20 scale-75 opacity-60 md:opacity-60 opacity-0'
                     }`}
-                    onClick={() => !isCenter && (isPrev ? prevProject() : nextProject())}
+                    onClick={() => !isCenter && (isPrev ? prevProject() : isNext ? nextProject() : null)}
                     onMouseEnter={() => isCenter && setHoveredProject(project.id)}
                     onMouseLeave={() => setHoveredProject(null)}
                     style={{
                       transform: `
-                        translateX(${isCenter ? '0px' : isPrev ? '-280px' : '280px'}) 
-                        scale(${isCenter ? '1' : '0.8'}) 
-                        rotateY(${isCenter ? '0deg' : isPrev ? '-15deg' : '15deg'})
+                        translateX(${
+                          isCenter ? '0px' : 
+                          isPrev ? (window.innerWidth < 768 ? '-100px' : '-280px') : 
+                          isNext ? (window.innerWidth < 768 ? '100px' : '280px') : '0px'
+                        }) 
+                        scale(${isCenter ? '1' : (window.innerWidth < 768 ? '0.9' : '0.8')}) 
+                        rotateY(${isCenter ? '0deg' : isPrev ? '-15deg' : isNext ? '15deg' : '0deg'})
                       `,
                     }}
                   >
-                    {/* Votre design de carte original */}
-                    <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-purple-heart-100/50 dark:border-purple-heart-400/20 w-80">
-                      <div className="relative overflow-hidden">
+                    {/* Carte projet */}
+                    <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-purple-heart-100/50 dark:border-purple-heart-400/20 w-72 md:w-80">
+                      <div className="relative overflow-hidden group">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-40 md:h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         
-                        {/* Boutons d'action au hover - seulement sur la carte centrale */}
+                        {/* Actions visibles uniquement si carte centrale hover */}
                         {isCenter && hoveredProject === project.id && (
                           <div className="absolute inset-0 flex items-center justify-center space-x-3 opacity-0 animate-[fadeIn_0.3s_ease-out_forwards]">
                             <a
                               href={project.github}
-                              className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/40 transition-colors"
+                              className="p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/40 transition-colors"
                               aria-label="Voir sur GitHub"
                             >
-                              <Github className="w-5 h-5 text-white" />
+                              <Github className="w-4 h-4 md:w-5 md:h-5 text-white" />
                             </a>
-                            <button className="px-6 py-3 bg-purple-heart-600/90 backdrop-blur-sm text-white rounded-full font-medium transition-all duration-300 shadow-lg whitespace-nowrap hover:bg-purple-heart-700/90">
+                            <button className="px-4 py-2 md:px-6 md:py-3 bg-purple-heart-600/90 backdrop-blur-sm text-white rounded-full font-medium transition-all duration-300 shadow-lg text-sm md:text-base whitespace-nowrap hover:bg-purple-heart-700/90">
                               <Link href={project.link}>
                                 Voir le projet
                               </Link>
                             </button>
-                           
                             <a
                               href={project.link}
-                              className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/40 transition-colors"
+                              className="p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/40 transition-colors"
                               aria-label="Voir le projet"
                             >
-                              <ExternalLink className="w-5 h-5 text-white" />
+                              <ExternalLink className="w-4 h-4 md:w-5 md:h-5 text-white" />
                             </a>
                           </div>
                         )}
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-4 md:p-6">
                         <div className="flex items-center justify-between mb-2">
-                          <Badge className="bg-purple-heart-100 dark:bg-purple-heart-900/30 text-purple-heart-700 dark:text-purple-heart-300 hover:bg-purple-heart-200 dark:hover:bg-purple-heart-900/50">
+                          <Badge className="bg-purple-heart-100 dark:bg-purple-heart-900/30 text-purple-heart-700 dark:text-purple-heart-300 hover:bg-purple-heart-200 dark:hover:bg-purple-heart-900/50 text-xs">
                             {project.category}
                           </Badge>
-                          {/* <div className="flex items-center space-x-3 text-xs text-gray-300">
-                            <div className="flex items-center space-x-1">
-                              <Eye className="w-3 h-3" />
-                              <span>{project.views}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <MousePointer className="w-3 h-3" />
-                              <span>{project.clicks}</span>
-                            </div>
-                          </div> */}
                         </div>
                         
-                        <h3 className="text-xl font-semibold text-white mb-2 font-display">
+                        <h3 className="text-lg md:text-xl font-semibold text-white mb-2 font-display">
                           {project.title}
                         </h3>
                         
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                        <p className="text-gray-300 text-xs md:text-sm leading-relaxed mb-4">
                           {project.shortDescription}
                         </p>
                         
@@ -301,9 +294,9 @@ export default function ProjectsSection() {
           {/* Navigation droite */}
           <button
             onClick={nextProject}
-            className="p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg border border-purple-heart-100 dark:border-purple-heart-400/20 z-40"
+            className="p-2 md:p-3 rounded-full bg-white/80 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg border border-purple-heart-100 dark:border-purple-heart-400/20 z-40 flex-shrink-0"
           >
-            <ChevronRight className="w-6 h-6 text-purple-heart-600 dark:text-purple-heart-400" />
+            <ChevronRight className="w-4 h-4 md:w-6 md:h-6 text-purple-heart-600 dark:text-purple-heart-400" />
           </button>
         </div>
 
@@ -313,7 +306,7 @@ export default function ProjectsSection() {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? 'bg-purple-heart-600 scale-125'
                   : 'bg-purple-heart-300 hover:bg-purple-heart-400'
@@ -345,6 +338,12 @@ export default function ProjectsSection() {
           }
           to {
             opacity: 1;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .perspective-1000 {
+            perspective: 600px;
           }
         }
       `}</style>
